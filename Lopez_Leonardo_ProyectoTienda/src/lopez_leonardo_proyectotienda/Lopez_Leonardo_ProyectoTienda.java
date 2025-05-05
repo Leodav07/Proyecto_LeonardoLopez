@@ -16,14 +16,16 @@ public class Lopez_Leonardo_ProyectoTienda {
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
         leer.useDelimiter("\n");
-        double efectivoCaja = 0;
+        double efectivoCaja = 0, cantidadKg = 0, totalCompraProveedor = 0;
+        double azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0;
         int opSeleccion = 0;
-        String tipoCliente;
+        String tipoCliente, tipoProveedor;
         int tipoProducto = 0;
 
         //MENÚ PRINCIPAL DE LA TIENDA
         do {
-            System.out.println("***** TIENDA JAVA | MENÚ PRINCIPAL *****");
+            System.out.println("=============** TIENDA JAVA | MENÚ PRINCIPAL **===========");
+            System.out.println("==========================================================\n");
             System.out.println("1. Abrir Caja");
             System.out.println("2. Ventas");
             System.out.println("3. Compras");
@@ -31,71 +33,117 @@ public class Lopez_Leonardo_ProyectoTienda {
             System.out.println("5. Salir de Sistema");
             System.out.print("Selecciona una opción: ");
             opSeleccion = leer.nextInt();
-            System.out.println("\n==============================================");
+            System.out.println("\n==========================================================");
 
             switch (opSeleccion) {
-                
-                   // SECCIÓN DE CAJA
+
+                // SECCIÓN DE CAJA
                 case 1:
-                    System.out.println("==============================================\n");
-                    System.out.println("*** ABRIR CAJA ***");
+                    System.out.println("========================** CAJA **========================");
+                    System.out.println("==========================================================\n");
+
                     System.out.print("Ingrese monto en efectivo: ");
                     double monto = leer.nextDouble();
                     efectivoCaja += monto;
-                    System.out.println("¡Monto agregado con éxito en caja!");
-                    System.out.println("\n==============================================");
-                    System.out.println("==============================================\n");
+                    System.out.println("\n===========**¡Monto agregado con éxito en caja!**===========");
+                    System.out.println("\n==========================================================");
 
                     break;
-             
-                    // SECCIÓN DE VENTAS
+
+                // SECCIÓN DE VENTAS
                 case 2:
-                    System.out.println("==============================================\n");
-                    System.out.println("*** VENTAS ***");
+                    System.out.println("========================** VENTAS **========================");
+                    System.out.println("==========================================================\n");
                     System.out.print("Ingrese tipo de cliente: ");
                     tipoCliente = leer.next();
-                    
-                    if(tipoCliente.equals("A")){
-                        System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
-                        System.out.println("Precio:      30 Lps  |     25 Lps |     32 Lps |    20 Lps ");
-                        System.out.print("Ingrese el código de producto: ");
-                        
-                        tipoProducto = leer.nextInt();
-                        
-                        System.out.println("\n==============================================");
-                        System.out.println("==============================================\n");
+                    System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
+                    System.out.print("Ingrese el código de producto deseado: ");
+                    tipoProducto = leer.nextInt();
+
+                    // RESTRINGIR PRODUCTOS
+                    if (tipoCliente.equals("B")) {
+                        if (tipoProducto == 4) {
+                            System.out.println("======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
+                        }
+                        break;
+                    } else if (tipoCliente.equals("C")) {
+                        if (tipoProducto == 1 || tipoProducto == 2 || tipoProducto == 3) {
+                            System.out.println("======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
+                            break;
+                        }
                     }
-                    else if(tipoCliente.equals("B")){
-                        System.out.println("Puede comprar solo productos 1, 2, 3");
-                        System.out.println("\n==============================================");
-                        System.out.println("==============================================\n");
-                        
-                    }
-                    else if (tipoCliente.equals("C")){
-                        System.out.println("Puede comprar solo producto 4");
-                        System.out.println("\n==============================================");
-                        System.out.println("==============================================\n");
-                    }
-                    else{
-                        System.out.println("Ingrese un número válido");
-                        System.out.println("\n==============================================");
-                        System.out.println("==============================================\n");
-                    }
-                   
+                    // FIN RESTRINGIR PRODUCTOS
+
+                    System.out.println("Producto: Azúcar | Precio: 30 Lps.");
+
+                    System.out.println("\n==========================================================");
+
                     break;
-    
-                    
-                   // SECCIÓN DE COMPRAS
+
+                // SECCIÓN DE COMPRAS
                 case 3:
-                    System.out.println("==============================================\n");
-                    System.out.println("*** COMPRAS ***");
+                    System.out.println("========================** COMPRAS **========================");
+                    System.out.println("==========================================================\n");
+                    System.out.print("Ingrese tipo de Proveedor: ");
+                    tipoProveedor = leer.next();
+                    System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
+                    System.out.print("Ingrese el código de producto deseado a comprar: ");
+                    tipoProducto = leer.nextInt();
+
+                    // RESTRINGIR PRODUCTOS
+                    if (tipoProveedor.equals("A")) {
+                        if (tipoProducto == 2 || tipoProducto == 3) {
+                            System.out.println("======** NO PUEDE PROVEER DICHO PRODUCTO **======\n");
+                        }
+                        break;
+                    } else if (tipoProveedor.equals("B")) {
+                        if (tipoProducto == 1 || tipoProducto == 4) {
+                            System.out.println("======** NO PUEDE PROVEER DICHO PRODUCTO **======\n");
+                            break;
+                        } else if (tipoProveedor.equals("C")) {
+                            if (tipoProducto == 1 || tipoProducto == 3 || tipoProducto == 4) {
+                                System.out.println("======** NO PUEDE PROVEER DICHO PRODUCTO **======\n");
+                                break;
+                            }
+                        }
+                    }
+                    // FIN RESTRINGIR PRODUCTOS
+
+                    System.out.print("Ingrese cantidad de kilogramos(kg) a comprar: ");
+                    cantidadKg = leer.nextDouble();
+                    switch (tipoProducto) {
+                        case 1:
+                            
+                            totalCompraProveedor = cantidadKg * 25;
+                            System.out.println("Precio por kilogramo: " + 25 + " Lps.");
+                            System.out.println("Precio total: " + totalCompraProveedor + " Lps.");
+                            azucarKg += cantidadKg;
+                            System.out.println("\n==========================================================");
+                            break;
+                        case 2:
+                            if (tipoProveedor.equals("B")) {
+                                totalCompraProveedor = cantidadKg * 20;
+                                System.out.println("Precio por kilogramo: " + 20 + " Lps.");
+                            } else if (tipoProveedor.equals("C")) {
+                                totalCompraProveedor = cantidadKg * 22;
+                                System.out.println("Precio por kilogramo: " + 22 + " Lps.");
+                            }
+                            System.out.println("Precio total: " + totalCompraProveedor + " Lps.");
+                            break;
+                        case 3: 
+                            totalCompraProveedor = cantidadKg * 30;
+                            System.out.println("Precio por kilogramo: " + 30 + " Lps.");
+                            System.out.println("Precio total: " + totalCompraProveedor + " Lps.");
+                            System.out.println("\n==========================================================");
+                            break;
+                    }
 
                     break;
 
-                   // SECCIÓN DE REPORTES
+                // SECCIÓN DE REPORTES
                 case 4:
-                    System.out.println("==============================================\n");
-                    System.out.println("*** REPORTES ***");
+                    System.out.println("========================** REPORTES **========================");
+                    System.out.println("==========================================================\n");
                     System.out.println("1. Cantidad Actual en Caja");
                     System.out.print("Seleccione una opción: ");
                     int reportSelec = leer.nextInt();
@@ -104,8 +152,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                         case 1:
                             System.out.println("\n----------------------------------------");
                             System.out.println("Efectivo actual en caja: " + efectivoCaja + " Lps.");
-                            System.out.println("\n==============================================");
-                            System.out.println("==============================================\n");
+                            System.out.println("\n==========================================================");
+
                             break;
 
                         default:
@@ -114,20 +162,20 @@ public class Lopez_Leonardo_ProyectoTienda {
                     }
                     break;
 
-                  
-                 // SALIDA DEL SISTEMA
+                // SALIDA DEL SISTEMA
                 case 5:
-                    System.out.println("==============================================\n");
-                    System.out.println("===== SALIENDO DEL SISTEMA... =====");
+                    System.out.println("========================** SALIENDO DEL SISTEMA... **========================");
+                    System.out.println("==========================================================\n");
                     break;
 
                 // INGRESO INVÁLIDO DE OPCIONES
                 default:
-                    System.out.println("==============================================\n");
+                    System.out.println("==========================================================\n");
                     System.out.println("Selecciona un número válido...");
                     break;
 
             }
+
         } while (opSeleccion != 5);
     }
 
