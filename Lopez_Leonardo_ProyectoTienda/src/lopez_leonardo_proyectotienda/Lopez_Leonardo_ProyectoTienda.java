@@ -10,6 +10,8 @@ import java.util.Scanner;
  *
  * @author hnleo
  */
+
+// ULTIMA ACTUALIZACION; FALTA CORRECION EN LOS RESULTADOS DOUBLE
 public class Lopez_Leonardo_ProyectoTienda {
 
     public static void main(String[] args) {
