@@ -10,7 +10,6 @@ import java.util.Scanner;
  *
  * @author hnleo
  */
-
 // ULTIMA ACTUALIZACION; FALTA CORRECION EN LOS RESULTADOS DOUBLE
 public class Lopez_Leonardo_ProyectoTienda {
 
@@ -53,7 +52,10 @@ public class Lopez_Leonardo_ProyectoTienda {
 
             switch (opSeleccion) {
 
-                // SECCIÓN DE CAJA
+                /* 
+                SECCIÓN DE CAJA
+                Aquí el cajero puede abrir la cajera e ingresar monto en efectivo.
+                 */
                 case 1:
                     System.out.println("========================** CAJA **========================");
                     System.out.println("==========================================================\n");
@@ -66,7 +68,9 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     break;
 
-                // SECCIÓN DE VENTAS
+                /* SECCIÓN DE VENTAS
+                    Aquí el cliente puede seleccionar producto, añadirlo a la canasta y comprar.
+                 */
                 case 2:
                     do {
                         cantidadKg = 0;
@@ -99,51 +103,53 @@ public class Lopez_Leonardo_ProyectoTienda {
                         switch (tipoProducto) {
                             case 1:
                                 if (azucarKg > cantidadKg) {
-                                compraCliente = cantidadKg * 30;
-                                System.out.println("\nPrecio por kilogramo: " + 30 + " Lps.");
-                                System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                System.out.print("¿Desea añadir producto a la compra?: ");
-                                respuestaSiNo = leer.next().toLowerCase();
+                                    compraCliente = cantidadKg * 30;
+                                    System.out.println("\nPrecio por kilogramo: " + 30 + " Lps.");
+                                    System.out.println("Precio total: " + compraCliente + " Lps.\n");
+                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    respuestaSiNo = leer.next().toLowerCase();
 
-                                if (respuestaSiNo.equals("si")) {
-                                    
+                                    if (respuestaSiNo.equals("si")) {
+
                                         azucarKg -= cantidadKg;
                                         compraKgAzucar += cantidadKg;
                                         totalAzucar += compraCliente;
                                         System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
-                                    } else{
-                                    System.out.println("\n====** PRODUCTO NO AÑADIDO **=====\n");
-                                }
-                                }
-                                    else {
-                                        System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
-                                        break;
+                                    } else {
+                                        System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
                                     }
+                                } else {
+                                    System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
+                                    break;
+                                }
 
-                                
-                    
                                 break;
                             case 2:
-                                compraCliente = cantidadKg * 25;
-                                System.out.println("\nPrecio por kilogramo: " + 25 + " Lps.");
-                                System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                System.out.print("¿Desea añadir producto a la compra?: ");
-                                respuestaSiNo = leer.next().toLowerCase();
+                                if (avenaKg > cantidadKg) {
+                                    compraCliente = cantidadKg * 25;
+                                    System.out.println("\nPrecio por kilogramo: " + 25 + " Lps.");
+                                    System.out.println("Precio total: " + compraCliente + " Lps.\n");
+                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    respuestaSiNo = leer.next().toLowerCase();
 
-                                if (respuestaSiNo.equals("si")) {
-                                    if (avenaKg > cantidadKg) {
-                                        avenaKg -= cantidadKg;
-                                        compraKgAvena += cantidadKg;
-                                        totalAvena += compraCliente;
-                                        System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
+                                    if (respuestaSiNo.equals("si")) {
+                                        if (avenaKg > cantidadKg) {
+                                            avenaKg -= cantidadKg;
+                                            compraKgAvena += cantidadKg;
+                                            totalAvena += compraCliente;
+                                            System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
-                                    } else {
-                                        System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
+                                        } else {
+                                            System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
+                                        }
                                     }
-
+                                } else {
+                                    System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
                                 }
+
                                 break;
                             case 3:
+                                if(trigoKg>cantidadKg){
                                 compraCliente = cantidadKg * 32;
                                 System.out.println("\nPrecio por kilogramo: " + 32 + " Lps.");
                                 System.out.println("Precio total: " + compraCliente + " Lps.\n");
@@ -158,12 +164,16 @@ public class Lopez_Leonardo_ProyectoTienda {
                                         System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
                                     } else {
-                                        System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
+                                        System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
                                     }
 
                                 }
+                                }else {
+                                        System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
+                                    }
                                 break;
                             case 4:
+                                if (maizKg>cantidadKg){
                                 compraCliente = cantidadKg * 20;
                                 System.out.println("\nPrecio por kilogramo: " + 20 + " Lps.");
                                 System.out.println("Precio total: " + compraCliente + " Lps.\n");
@@ -178,12 +188,15 @@ public class Lopez_Leonardo_ProyectoTienda {
                                         System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
                                     } else {
-                                        System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
+                                        System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
                                     }
 
                                 }
+                                }else{
+                                    System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
+                                }
                         }
-                    
+
                         System.out.print("¿Desea comprar otro producto?: ");
                         respContinuar = leer.next().toLowerCase();
 
@@ -225,7 +238,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     efectivoCaja += totalVenta;
                     gananciaCaja += totalVenta;
-                    
+
                     String pctDescU = String.format("%.2f", pctDesc);
                     String isvU = String.format("%.2f", isv);
                     String descuentoU = String.format("%.2f", descuento);
@@ -238,7 +251,11 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     break;
 
-                // SECCIÓN DE COMPRAS
+                //Fin de sección de ventas.    
+                /*
+                SECCIÓN DE COMPRAS
+                Aquí el vendedor compra producto para la tienda.
+                 */
                 case 3:
                     System.out.println("=======================** COMPRAS **======================");
                     System.out.println("==========================================================\n");
