@@ -10,7 +10,6 @@ import java.util.Scanner;
  *
  * @author hnleo
  */
-// ULTIMA ACTUALIZACION; FALTA CORRECION EN LOS RESULTADOS DOUBLE
 public class Lopez_Leonardo_ProyectoTienda {
 
     public static void main(String[] args) {
@@ -38,14 +37,15 @@ public class Lopez_Leonardo_ProyectoTienda {
         int opSeleccion = 0;
 
         //MENÚ PRINCIPAL DE LA TIENDA
+        System.out.println("==========================================================");
         do {
             System.out.println("=============** TIENDA JAVA | MENÚ PRINCIPAL **===========");
             System.out.println("==========================================================\n");
-            System.out.println("===== 1. Abrir Caja =====");
-            System.out.println("===== 2. Ventas  ========");
-            System.out.println("===== 3. Compras  =======");
-            System.out.println("===== 4. Reportes  ======");
-            System.out.println("== 5. Salir de Sistema ==\n");
+            System.out.println("================* 1.     Abrir Caja     *=================");
+            System.out.println("================* 2.      Ventas        *=================");
+            System.out.println("================* 3.      Compras       *=================");
+            System.out.println("================* 4.      Reportes      *=================");
+            System.out.println("================* 5.  Salir del Sistema *=================\n");
             System.out.print("Selecciona una opción: ");
             opSeleccion = leer.nextInt();
             System.out.println("\n==========================================================");
@@ -54,7 +54,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                 /* 
                 SECCIÓN DE CAJA
-                Aquí el cajero puede abrir la cajera e ingresar monto en efectivo.
+                Actividad: Aquí el cajero puede abrir la cajera e ingresar monto en efectivo.
                  */
                 case 1:
                     System.out.println("========================** CAJA **========================");
@@ -69,7 +69,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                     break;
 
                 /* SECCIÓN DE VENTAS
-                    Aquí el cliente puede seleccionar producto, añadirlo a la canasta y comprar.
+                    Actividad: Aquí el cliente puede seleccionar producto, añadirlo a la canasta y comprar.
                  */
                 case 2:
                     do {
@@ -102,7 +102,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                         switch (tipoProducto) {
                             case 1:
-                                if (azucarKg > cantidadKg) {
+                                if (azucarKg >= cantidadKg) {
                                     compraCliente = cantidadKg * 30;
                                     System.out.println("\nPrecio por kilogramo: " + 30 + " Lps.");
                                     System.out.println("Precio total: " + compraCliente + " Lps.\n");
@@ -125,7 +125,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                                 break;
                             case 2:
-                                if (avenaKg > cantidadKg) {
+                                if (avenaKg >= cantidadKg) {
                                     compraCliente = cantidadKg * 25;
                                     System.out.println("\nPrecio por kilogramo: " + 25 + " Lps.");
                                     System.out.println("Precio total: " + compraCliente + " Lps.\n");
@@ -149,50 +149,50 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                                 break;
                             case 3:
-                                if(trigoKg>cantidadKg){
-                                compraCliente = cantidadKg * 32;
-                                System.out.println("\nPrecio por kilogramo: " + 32 + " Lps.");
-                                System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                System.out.print("¿Desea añadir producto a la compra?: ");
-                                respuestaSiNo = leer.next().toLowerCase();
+                                if (trigoKg >= cantidadKg) {
+                                    compraCliente = cantidadKg * 32;
+                                    System.out.println("\nPrecio por kilogramo: " + 32 + " Lps.");
+                                    System.out.println("Precio total: " + compraCliente + " Lps.\n");
+                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    respuestaSiNo = leer.next().toLowerCase();
 
-                                if (respuestaSiNo.equals("si")) {
-                                    if (trigoKg > cantidadKg) {
-                                        trigoKg -= cantidadKg;
-                                        compraKgTrigo += cantidadKg;
-                                        totalTrigo += compraCliente;
-                                        System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
+                                    if (respuestaSiNo.equals("si")) {
+                                        if (trigoKg > cantidadKg) {
+                                            trigoKg -= cantidadKg;
+                                            compraKgTrigo += cantidadKg;
+                                            totalTrigo += compraCliente;
+                                            System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
-                                    } else {
-                                        System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
+                                        } else {
+                                            System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
+                                        }
+
                                     }
-
+                                } else {
+                                    System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
                                 }
-                                }else {
-                                        System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
-                                    }
                                 break;
                             case 4:
-                                if (maizKg>cantidadKg){
-                                compraCliente = cantidadKg * 20;
-                                System.out.println("\nPrecio por kilogramo: " + 20 + " Lps.");
-                                System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                System.out.print("¿Desea añadir producto a la compra?: ");
-                                respuestaSiNo = leer.next().toLowerCase();
+                                if (maizKg >= cantidadKg) {
+                                    compraCliente = cantidadKg * 20;
+                                    System.out.println("\nPrecio por kilogramo: " + 20 + " Lps.");
+                                    System.out.println("Precio total: " + compraCliente + " Lps.\n");
+                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    respuestaSiNo = leer.next().toLowerCase();
 
-                                if (respuestaSiNo.equals("si")) {
-                                    if (maizKg > cantidadKg) {
-                                        maizKg -= cantidadKg;
-                                        compraKgMaiz += cantidadKg;
-                                        totalMaiz += compraCliente;
-                                        System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
+                                    if (respuestaSiNo.equals("si")) {
+                                        if (maizKg > cantidadKg) {
+                                            maizKg -= cantidadKg;
+                                            compraKgMaiz += cantidadKg;
+                                            totalMaiz += compraCliente;
+                                            System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
-                                    } else {
-                                        System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
+                                        } else {
+                                            System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
+                                        }
+
                                     }
-
-                                }
-                                }else{
+                                } else {
                                     System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
                                 }
                         }
@@ -202,23 +202,29 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     } while (respContinuar.equals("si"));
 
+                    //APARTADO DE FACTURA DEL CLIENTE
+                    String totalAzucarU = String.format("%.2f", totalAzucar);
+                    String totalAvenaU = String.format("%.2f", totalAvena);
+                    String totalTrigoU = String.format("%.2f", totalTrigo);
+                    String totalMaizU = String.format("%.2f", totalMaiz);
+
                     subtotalVenta = 0;
                     System.out.println("\n================** FACTURA **==================\n");
                     if (compraKgAzucar > 0) {
 
-                        System.out.println("Producto: Azúcar | Cantidad(kg): " + compraKgAzucar + "kg. | Precio: " + totalAzucar + " Lps.");
+                        System.out.println("Producto: Azúcar | Cantidad(kg): " + compraKgAzucar + "kg. | Precio: " + totalAzucarU + " Lps.");
                         subtotalVenta += totalAzucar;
                     }
                     if (compraKgAvena > 0) {
-                        System.out.println("Producto: Avena  | Cantidad(kg): " + compraKgAvena + "kg.  | Precio: " + totalAvena + " Lps.");
+                        System.out.println("Producto: Avena  | Cantidad(kg): " + compraKgAvena + "kg.  | Precio: " + totalAvenaU + " Lps.");
                         subtotalVenta += totalAvena;
                     }
                     if (compraKgTrigo > 0) {
-                        System.out.println("Producto: Trigo  | Cantidad(kg): " + compraKgTrigo + "kg.  | Precio: " + totalTrigo + " Lps.");
+                        System.out.println("Producto: Trigo  | Cantidad(kg): " + compraKgTrigo + "kg.  | Precio: " + totalTrigoU + " Lps.");
                         subtotalVenta += totalTrigo;
                     }
                     if (compraKgMaiz > 0) {
-                        System.out.println("Producto: Maíz   | Cantidad(kg): " + compraKgMaiz + "kg.   | Precio: " + totalMaiz + " Lps.");
+                        System.out.println("Producto: Maíz   | Cantidad(kg): " + compraKgMaiz + "kg.   | Precio: " + totalMaizU + " Lps.");
                         subtotalVenta += totalMaiz;
                     }
 
@@ -233,6 +239,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                         pctDesc = 0;
                     }
 
+                    //CALCULO PARA LA FACTURA
                     isv = subtotalVenta * 0.07;
                     totalVenta = (subtotalVenta - descuento) + isv;
 
@@ -254,7 +261,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                 //Fin de sección de ventas.    
                 /*
                 SECCIÓN DE COMPRAS
-                Aquí el vendedor compra producto para la tienda.
+                    Actividad: Aquí el vendedor compra producto para la tienda.
                  */
                 case 3:
                     System.out.println("=======================** COMPRAS **======================");
@@ -264,22 +271,24 @@ public class Lopez_Leonardo_ProyectoTienda {
                     System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
                     System.out.print("Ingrese el código de producto deseado a comprar: ");
                     tipoProducto = leer.nextInt();
-                    System.out.println("\n");
 
                     // RESTRINGIR PRODUCTOS
                     if (tipoProveedor.equals("a")) {
                         if (tipoProducto == 2 || tipoProducto == 3) {
-                            System.out.println("======** NO PUEDE PROVEER DICHO PRODUCTO **======\n");
+                            System.out.println("\n===========* NO PUEDE PROVEER DICHO PRODUCTO *============\n");
+                            System.out.println("\n==========================================================");
                             break;
                         }
 
                     } else if (tipoProveedor.equals("b")) {
                         if (tipoProducto == 1 || tipoProducto == 4) {
-                            System.out.println("======** NO PUEDE PROVEER DICHO PRODUCTO **======\n");
+                            System.out.println("\n===========* NO PUEDE PROVEER DICHO PRODUCTO *============\n");
+                            System.out.println("\n==========================================================");
                             break;
                         } else if (tipoProveedor.equals("c")) {
                             if (tipoProducto == 1 || tipoProducto == 3 || tipoProducto == 4) {
-                                System.out.println("======** NO PUEDE PROVEER DICHO PRODUCTO **======\n");
+                                System.out.println("\n===========* NO PUEDE PROVEER DICHO PRODUCTO *============\n");
+                                System.out.println("\n==========================================================");
                                 break;
                             }
                         }
@@ -288,11 +297,12 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     System.out.print("Ingrese cantidad de kilogramos(kg) a comprar: ");
                     cantidadKg = leer.nextDouble();
+                    System.out.println("\n");
                     switch (tipoProducto) {
                         case 1:
 
                             totalCompraProveedor = cantidadKg * 25;
-                            System.out.println("\nPrecio por kilogramo: " + 25 + " Lps.");
+                            System.out.println("Precio por kilogramo: " + 25 + " Lps.");
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
                             System.out.print("¿Desea realizar la compra?: ");
                             respuestaSiNo = leer.next().toLowerCase();
@@ -301,25 +311,26 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     azucarKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
-                                    System.out.println("\n======** COMPRA REALIZADA EXITOSAMENTE **======\n");
+                                    System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
+                                    System.out.println("\n==========================================================");
                                     break;
 
                                 } else {
-                                    System.out.println("No se puede pagar compra...");
+                                    System.out.println("\nDinero insuficiente, no se puede pagar compra...\n");
                                     System.out.println("\n==========================================================");
                                     break;
                                 }
                             } else {
-                                System.out.println("Finalizando proceso de compra...");
+                                System.out.println("\nFinalizando proceso de compra...\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
 
                         case 2:
-                            if (tipoProveedor.equals("B")) {
+                            if (tipoProveedor.equals("b")) {
                                 totalCompraProveedor = cantidadKg * 20;
-                                System.out.println("\nPrecio por kilogramo: " + 20 + " Lps.");
-                            } else if (tipoProveedor.equals("C")) {
+                                System.out.println("Precio por kilogramo: " + 20 + " Lps.");
+                            } else if (tipoProveedor.equals("c")) {
                                 totalCompraProveedor = cantidadKg * 22;
                                 System.out.println("Precio por kilogramo: " + 22 + " Lps.\n");
                             }
@@ -331,22 +342,22 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     avenaKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
-                                    System.out.println("\n======** COMPRA REALIZADA EXITOSAMENTE **======\n");
+                                    System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
                                     break;
 
                                 } else {
-                                    System.out.println("No se puede pagar compra...");
+                                    System.out.println("\nDinero insuficiente, no se puede pagar compra...\n");
                                     System.out.println("\n==========================================================");
                                     break;
                                 }
                             } else {
-                                System.out.println("Finalizando proceso de compra...");
+                                System.out.println("\nFinalizando proceso de compra...\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
                         case 3:
                             totalCompraProveedor = cantidadKg * 30;
-                            System.out.println("\nPrecio por kilogramo: " + 30 + " Lps.");
+                            System.out.println("Precio por kilogramo: " + 30 + " Lps.");
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
                             System.out.print("¿Desea realizar la compra?: ");
                             respuestaSiNo = leer.next().toLowerCase();
@@ -355,23 +366,23 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     trigoKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
-                                    System.out.println("\n======** COMPRA REALIZADA EXITOSAMENTE **======\n");
+                                    System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
                                     break;
 
                                 } else {
-                                    System.out.println("No se puede pagar compra...");
+                                    System.out.println("\nDinero insuficiente, no se puede pagar compra...\n");
                                     System.out.println("\n==========================================================");
                                     break;
                                 }
                             } else {
-                                System.out.println("Finalizando proceso de compra...");
+                                System.out.println("\nFinalizando proceso de compra...\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
 
                         case 4:
                             totalCompraProveedor = cantidadKg * 18;
-                            System.out.println("\nPrecio por kilogramo: " + 18 + " Lps.");
+                            System.out.println("Precio por kilogramo: " + 18 + " Lps.");
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
                             System.out.print("¿Desea realizar la compra?: ");
                             respuestaSiNo = leer.next().toLowerCase();
@@ -380,15 +391,15 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     maizKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
-                                    System.out.println("\n======** COMPRA REALIZADA EXITOSAMENTE **======\n");
+                                    System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
                                     break;
                                 } else {
-                                    System.out.println("No se puede pagar compra...");
+                                    System.out.println("\nDinero insuficiente, no se puede pagar compra...\n");
                                     System.out.println("\n==========================================================");
                                     break;
                                 }
                             } else {
-                                System.out.println("Finalizando proceso de compra...");
+                                System.out.println("\nFinalizando proceso de compra...\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
@@ -396,39 +407,31 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     break;
 
-                //////////////////////
-                // SECCIÓN DE REPORTES
+                /*
+                    SECCIÓN DE REPORTES
+                    Actividad: Aqui el cajero puede observar estadísticas de las ventas, compras realizadas, etc..
+                 */
                 case 4:
+                    String efectivoCajaU = String.format("%.2f", efectivoCaja);
+
                     System.out.println("======================** REPORTES **======================");
                     System.out.println("==========================================================\n");
-                    System.out.println("1. Cantidad Actual en Caja");
-                    System.out.print("Seleccione una opción: ");
-                    int reportSelec = leer.nextInt();
+                    System.out.println("\nCantidad Actual en Caja: " + efectivoCajaU);
+                    System.out.println("Ganancias: " + gananciaCaja);
 
-                    switch (reportSelec) {
-                        case 1:
-                            System.out.println("\n----------------------------------------");
-                            System.out.println("Efectivo actual en caja: " + efectivoCaja + " Lps.");
-                            System.out.println("\n==========================================================");
-
-                            break;
-
-                        default:
-                            System.out.println("Ingrese una opción válida...");
-                            break;
-                    }
                     break;
 
                 // SALIDA DEL SISTEMA
                 case 5:
-                    System.out.println("===================** SALIENDO DEL SISTEMA... **===================");
+                    System.out.println("===============** SALIENDO DEL SISTEMA.. **===============");
                     System.out.println("==========================================================\n");
                     break;
 
                 // INGRESO INVÁLIDO DE OPCIONES
                 default:
+                  
+                    System.out.println("\nSelecciona una opción válida...\n");
                     System.out.println("==========================================================\n");
-                    System.out.println("Selecciona un número válido...");
                     break;
 
             }
