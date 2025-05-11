@@ -22,20 +22,22 @@ public class Lopez_Leonardo_ProyectoTienda {
         double efectivoCaja = 0, gananciaCaja = 0;
         // VARIABLES SECCIÓN DE VENTAS
         double compraCliente = 0, cantidadKg = 0, subtotalVenta = 0, totalVenta = 0, descuento = 0, isv = 0, pctDesc = 0, ventaMax = 0;
-        double compraKgAzucar = 0, totalAzucar = 0;
-        double compraKgAvena = 0, totalAvena = 0;
-        double compraKgTrigo = 0, totalTrigo = 0;
-        double compraKgMaiz = 0, totalMaiz = 0;
+        double compraKgAzucar = 0, compraKgAzucarU = 0;
+        double compraKgAvena = 0, compraKgAvenaU = 0;
+        double compraKgTrigo = 0, compraKgTrigoU = 0;
+        double compraKgMaiz = 0, compraKgMaizU = 0;
         String tipoCliente, respContinuar, respuestaSiNo;
-        int contadorVentas = 0, volumenVentas = 0, promedioVentas = 0;
+        int contadorVentas = 0, promedioVentas = 0;
+        double volumenVentas = 0;
         // VARIABLES SECCIÓN COMPRAS
         String tipoProveedor;
         double totalCompraProveedor = 0, compraMax = 0;
         double azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0;
-        int tipoProducto = 0, contadorCompras = 0, volumenCompras = 0, promedioCompras = 0;
+        int tipoProducto = 0, contadorCompras = 0, promedioCompras = 0;
+        double volumenCompras = 0;
 
         // VARIABLES SECCION REPORTES
-        double margenGanancia = 0;
+        double margenGanancia = 0, productoEstrella = 0;
         // VARIABLES SECCIÓN MENÚ
         int opSeleccion = 0;
 
@@ -75,11 +77,17 @@ public class Lopez_Leonardo_ProyectoTienda {
                     Actividad: Aquí el cliente puede seleccionar producto, añadirlo a la canasta y comprar.
                  */
                 case 2:
+                    double totalAzucar = 0,
+                     totalAvena = 0,
+                     totalTrigo = 0,
+                     totalMaiz = 0;
+                    System.out.println("=======================** VENTAS **=======================");
+                    System.out.println("==========================================================\n");
                     do {
+
                         cantidadKg = 0;
                         compraCliente = 0;
-                        System.out.println("=======================** VENTAS **========================");
-                        System.out.println("==========================================================\n");
+
                         System.out.print("Ingrese tipo de cliente: ");
                         tipoCliente = leer.next().toLowerCase();
                         System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
@@ -90,12 +98,13 @@ public class Lopez_Leonardo_ProyectoTienda {
                         if (tipoCliente.equals("b")) {
                             if (tipoProducto == 4) {
                                 System.out.println("======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
+                                break;
                             }
 
                         } else if (tipoCliente.equals("c")) {
                             if (tipoProducto == 1 || tipoProducto == 2 || tipoProducto == 3) {
                                 System.out.println("======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
-
+                               break;
                             }
                         }
                         // FIN RESTRINGIR PRODUCTOS
@@ -116,6 +125,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                                         azucarKg -= cantidadKg;
                                         compraKgAzucar += cantidadKg;
+                                        compraKgAzucarU += cantidadKg;
                                         totalAzucar += compraCliente;
                                         System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
                                     } else {
@@ -136,16 +146,15 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     respuestaSiNo = leer.next().toLowerCase();
 
                                     if (respuestaSiNo.equals("si")) {
-                                        if (avenaKg > cantidadKg) {
                                             avenaKg -= cantidadKg;
                                             compraKgAvena += cantidadKg;
+                                            compraKgAvenaU += cantidadKg;
                                             totalAvena += compraCliente;
                                             System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
                                         } else {
                                             System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
                                         }
-                                    }
                                 } else {
                                     System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
                                 }
@@ -160,9 +169,10 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     respuestaSiNo = leer.next().toLowerCase();
 
                                     if (respuestaSiNo.equals("si")) {
-                                        if (trigoKg > cantidadKg) {
+                                        
                                             trigoKg -= cantidadKg;
                                             compraKgTrigo += cantidadKg;
+                                            compraKgTrigoU += cantidadKg;
                                             totalTrigo += compraCliente;
                                             System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
@@ -170,12 +180,13 @@ public class Lopez_Leonardo_ProyectoTienda {
                                             System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
                                         }
 
-                                    }
+                                    
                                 } else {
                                     System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
                                 }
                                 break;
                             case 4:
+
                                 if (maizKg >= cantidadKg) {
                                     compraCliente = cantidadKg * 20;
                                     System.out.println("\nPrecio por kilogramo: " + 20 + " Lps.");
@@ -184,9 +195,10 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     respuestaSiNo = leer.next().toLowerCase();
 
                                     if (respuestaSiNo.equals("si")) {
-                                        if (maizKg > cantidadKg) {
+                                       
                                             maizKg -= cantidadKg;
                                             compraKgMaiz += cantidadKg;
+                                            compraKgMaizU += cantidadKg;
                                             totalMaiz += compraCliente;
                                             System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
@@ -194,7 +206,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                             System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
                                         }
 
-                                    }
+                                    
                                 } else {
                                     System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
                                 }
@@ -202,7 +214,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                         System.out.print("¿Desea comprar otro producto?: ");
                         respContinuar = leer.next().toLowerCase();
-
+                        
                     } while (respContinuar.equals("si"));
 
                     //APARTADO DE FACTURA DEL CLIENTE
@@ -212,22 +224,23 @@ public class Lopez_Leonardo_ProyectoTienda {
                     String totalMaizU = String.format("%.2f", totalMaiz);
 
                     subtotalVenta = 0;
+                    totalVenta = 0;
                     System.out.println("\n================** FACTURA **==================\n");
-                    if (compraKgAzucar > 0) {
+                    if (compraKgAzucarU > 0) {
 
-                        System.out.println("Producto: Azúcar | Cantidad(kg): " + compraKgAzucar + "kg. | Precio: " + totalAzucarU + " Lps.");
+                        System.out.println("Producto: Azúcar | Cantidad(kg): " + compraKgAzucarU + "kg. | Precio: " + totalAzucarU + " Lps.");
                         subtotalVenta += totalAzucar;
                     }
-                    if (compraKgAvena > 0) {
-                        System.out.println("Producto: Avena  | Cantidad(kg): " + compraKgAvena + "kg.  | Precio: " + totalAvenaU + " Lps.");
+                    if (compraKgAvenaU > 0) {
+                        System.out.println("Producto: Avena  | Cantidad(kg): " + compraKgAvenaU + "kg.  | Precio: " + totalAvenaU + " Lps.");
                         subtotalVenta += totalAvena;
                     }
-                    if (compraKgTrigo > 0) {
-                        System.out.println("Producto: Trigo  | Cantidad(kg): " + compraKgTrigo + "kg.  | Precio: " + totalTrigoU + " Lps.");
+                    if (compraKgTrigoU > 0) {
+                        System.out.println("Producto: Trigo  | Cantidad(kg): " + compraKgTrigoU + "kg.  | Precio: " + totalTrigoU + " Lps.");
                         subtotalVenta += totalTrigo;
                     }
-                    if (compraKgMaiz > 0) {
-                        System.out.println("Producto: Maíz   | Cantidad(kg): " + compraKgMaiz + "kg.   | Precio: " + totalMaizU + " Lps.");
+                    if (compraKgMaizU > 0) {
+                        System.out.println("Producto: Maíz   | Cantidad(kg): " + compraKgMaizU + "kg.   | Precio: " + totalMaizU + " Lps.");
                         subtotalVenta += totalMaiz;
                     }
 
@@ -442,6 +455,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                     Actividad: Aqui el cajero puede observar estadísticas de las ventas, compras realizadas, etc..
                  */
                 case 4:
+                    int cProd = 0;
                     String efectivoCajaU = String.format("%.2f", efectivoCaja);
 
                     System.out.println("======================** REPORTES **======================");
@@ -464,7 +478,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                         System.out.println("Sin Ganancias ni Pérdidas.");
                     }
                     System.out.println("\n--------------------------------------------------------\n");
-                    // Fin del cálculo
+
                     //Cálculo de promedios
                     promedioVentas = volumenVentas / contadorVentas;
                     promedioCompras = volumenCompras / contadorCompras;
@@ -473,6 +487,45 @@ public class Lopez_Leonardo_ProyectoTienda {
                     System.out.println("\n--------------------------------------------------------\n");
                     System.out.println("La Venta con Mayor Ganancia Realizada es de: " + ventaMax + " Lps.");
                     System.out.println("La Compra con Mayor Gasto Efectuada es de: " + compraMax + " Lps.");
+
+                    //Cálculo Producto Estrella
+                    productoEstrella = 0;
+                    if (compraKgAzucar > productoEstrella) {
+                        productoEstrella = compraKgAzucar;
+                        cProd++;
+                    }
+                    if (compraKgAvena > productoEstrella) {
+                        productoEstrella = compraKgAvena;
+                        cProd++;
+                    }
+                    if (compraKgTrigo > productoEstrella) {
+                        productoEstrella = compraKgTrigo;
+                        cProd++;
+                    }
+                    if (compraKgMaiz > productoEstrella) {
+                        productoEstrella = compraKgMaiz;
+                        cProd++;
+                    }
+
+                    //Impresión de producto Estrella o Productos Estrellas.
+                    if (cProd == 1) {
+                        System.out.print("El Producto Estrella es: ");
+                    } else {
+                        System.out.println("Los Productos Estrella son: ");
+                    }
+                    if (compraKgAzucar == productoEstrella) {
+                        System.out.print(" Azucar con " + compraKgAzucar + "kg vendidos.");
+                    }
+                    if (compraKgAvena == productoEstrella) {
+                        System.out.println(" Avena con " + compraKgAvena + "kg vendidos.");
+                    }
+                    if (compraKgTrigo == productoEstrella) {
+                        System.out.println(" Trigo con " + compraKgTrigo + "kg vendidos.");
+                    }
+                    if (compraKgMaiz == productoEstrella) {
+                        System.out.println(" Maiz con " + compraKgMaiz + "kg vendidos.");
+                    }
+                    System.out.println("\n==========================================================");
 
                     break;
 
