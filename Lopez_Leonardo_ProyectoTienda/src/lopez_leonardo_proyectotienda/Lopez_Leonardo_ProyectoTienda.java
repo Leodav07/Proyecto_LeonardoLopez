@@ -26,7 +26,7 @@ public class Lopez_Leonardo_ProyectoTienda {
         double compraKgAvena = 0, compraKgAvenaU = 0;
         double compraKgTrigo = 0, compraKgTrigoU = 0;
         double compraKgMaiz = 0, compraKgMaizU = 0;
-        String tipoCliente, respContinuar="", respuestaSiNo;
+        String tipoCliente, respContinuar = "", respuestaSiNo;
         int contadorVentas = 0;
         double volumenVentas = 0, promedioVentas = 0;
         // VARIABLES SECCIÓN COMPRAS
@@ -77,6 +77,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                     Actividad: Aquí el cliente puede seleccionar producto, añadirlo a la canasta y comprar.
                  */
                 case 2:
+                    
                     double totalAzucar = 0,
                      totalAvena = 0,
                      totalTrigo = 0,
@@ -84,11 +85,11 @@ public class Lopez_Leonardo_ProyectoTienda {
                     System.out.println("=======================** VENTAS **=======================");
                     System.out.println("==========================================================\n");
                     do {
-
+                        boolean seguir = true;
                         cantidadKg = 0;
                         compraCliente = 0;
 
-                        System.out.print("Ingrese tipo de cliente: ");
+                        System.out.print("Ingrese tipo de cliente (A/B/C): ");
                         tipoCliente = leer.next().toLowerCase();
                         System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
                         System.out.print("Ingrese el código de producto deseado: ");
@@ -97,18 +98,18 @@ public class Lopez_Leonardo_ProyectoTienda {
                         // RESTRINGIR PRODUCTOS
                         if (tipoCliente.equals("b")) {
                             if (tipoProducto == 4) {
-                                System.out.println("======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
-                                continue;
+                                System.out.println("\n======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
+                                seguir = false;
                             }
 
                         } else if (tipoCliente.equals("c")) {
                             if (tipoProducto == 1 || tipoProducto == 2 || tipoProducto == 3) {
-                                System.out.println("======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
-                                continue;
+                                System.out.println("\n======** NO PUEDE COMPRAR DICHO PRODUCTO **======\n");
+                                seguir = false;
                             }
                         }
                         // FIN RESTRINGIR PRODUCTOS
-
+                       if(seguir==true ){
                         System.out.print("Ingrese cantidad de kilogramos(kg) a comprar: ");
                         cantidadKg = leer.nextDouble();
 
@@ -118,7 +119,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     compraCliente = cantidadKg * 30;
                                     System.out.println("\nPrecio por kilogramo: " + 30 + " Lps.");
                                     System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    System.out.print("¿Desea añadir producto a la compra?(Si/No): ");
                                     respuestaSiNo = leer.next().toLowerCase();
 
                                     if (respuestaSiNo.equals("si")) {
@@ -142,7 +143,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     compraCliente = cantidadKg * 25;
                                     System.out.println("\nPrecio por kilogramo: " + 25 + " Lps.");
                                     System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    System.out.print("¿Desea añadir producto a la compra?(Si/No: ");
                                     respuestaSiNo = leer.next().toLowerCase();
 
                                     if (respuestaSiNo.equals("si")) {
@@ -165,7 +166,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     compraCliente = cantidadKg * 32;
                                     System.out.println("\nPrecio por kilogramo: " + 32 + " Lps.");
                                     System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    System.out.print("¿Desea añadir producto a la compra?(Si/No): ");
                                     respuestaSiNo = leer.next().toLowerCase();
 
                                     if (respuestaSiNo.equals("si")) {
@@ -190,7 +191,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     compraCliente = cantidadKg * 20;
                                     System.out.println("\nPrecio por kilogramo: " + 20 + " Lps.");
                                     System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                    System.out.print("¿Desea añadir producto a la compra?: ");
+                                    System.out.print("¿Desea añadir producto a la compra?(Si/No): ");
                                     respuestaSiNo = leer.next().toLowerCase();
 
                                     if (respuestaSiNo.equals("si")) {
@@ -209,10 +210,11 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     System.out.println("\n======** NO HAY SUFICIENTE PRODUCTO **======\n");
                                 }
                         }
+                       }
 
-                        System.out.print("¿Desea comprar otro producto?: ");
+                        System.out.print("¿Desea comprar otro producto?(Si/No): ");
                         respContinuar = leer.next().toLowerCase();
-
+                        System.out.println("\n==========================================================\n");
                     } while (respContinuar.equals("si"));
 
                     //APARTADO DE FACTURA DEL CLIENTE
@@ -284,7 +286,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                 case 3:
                     System.out.println("=======================** COMPRAS **======================");
                     System.out.println("==========================================================\n");
-                    System.out.print("Ingrese tipo de Proveedor: ");
+                    System.out.print("Ingrese tipo de Proveedor(A/B/C): ");
                     tipoProveedor = leer.next().toLowerCase();
                     System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
                     System.out.print("Ingrese el código de producto deseado a comprar: ");
@@ -322,7 +324,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                             totalCompraProveedor = cantidadKg * 25;
                             System.out.println("Precio por kilogramo: " + 25 + " Lps.");
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
-                            System.out.print("¿Desea realizar la compra?: ");
+                            System.out.print("¿Desea realizar la compra?(Si/No): ");
                             respuestaSiNo = leer.next().toLowerCase();
 
                             if (respuestaSiNo.equals("si")) {
@@ -358,7 +360,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 System.out.println("Precio por kilogramo: " + 22 + " Lps.\n");
                             }
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
-                            System.out.print("¿Desea realizar la compra?: ");
+                            System.out.print("¿Desea realizar la compra?(Si/No): ");
                             respuestaSiNo = leer.next().toLowerCase();
 
                             if (respuestaSiNo.equals("si")) {
@@ -388,7 +390,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                             totalCompraProveedor = cantidadKg * 30;
                             System.out.println("Precio por kilogramo: " + 30 + " Lps.");
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
-                            System.out.print("¿Desea realizar la compra?: ");
+                            System.out.print("¿Desea realizar la compra?(Si/No): ");
                             respuestaSiNo = leer.next().toLowerCase();
 
                             if (respuestaSiNo.equals("si")) {
@@ -419,7 +421,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                             totalCompraProveedor = cantidadKg * 18;
                             System.out.println("Precio por kilogramo: " + 18 + " Lps.");
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
-                            System.out.print("¿Desea realizar la compra?: ");
+                            System.out.print("¿Desea realizar la compra?(Si/No): ");
                             respuestaSiNo = leer.next().toLowerCase();
 
                             if (respuestaSiNo.equals("si")) {
