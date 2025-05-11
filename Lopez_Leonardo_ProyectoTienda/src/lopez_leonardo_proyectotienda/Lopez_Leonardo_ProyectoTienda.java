@@ -27,12 +27,15 @@ public class Lopez_Leonardo_ProyectoTienda {
         double compraKgTrigo = 0, totalTrigo = 0;
         double compraKgMaiz = 0, totalMaiz = 0;
         String tipoCliente, respContinuar, respuestaSiNo;
-        int contadorVentas = 0;
+        int contadorVentas = 0, volumenVentas=0, promedioVentas=0;
         // VARIABLES SECCIÓN COMPRAS
         String tipoProveedor;
         double totalCompraProveedor = 0;
         double azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0;
-        int tipoProducto = 0, contadorCompras = 0;
+        int tipoProducto = 0, contadorCompras = 0, volumenCompras=0, promedioCompras=0;
+        
+        // VARIABLES SECCION REPORTES
+        double margenGanancia = 0;
         // VARIABLES SECCIÓN MENÚ
         int opSeleccion = 0;
 
@@ -255,7 +258,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                     System.out.println("\nSubtotal: " + subtotalVentaU + " Lps.\n" + "\nDescuento del " + pctDescU + "%: " + descuentoU + " Lps.\n"
                             + "\nImpuestos 7%: " + isvU + " Lps.\n\nTotal a Pagar: " + totalVentaU + " Lps.");
                     System.out.println("\n==========================================================");
-
+                    contadorVentas++;
+                    volumenVentas+=totalVenta;
                     break;
 
                 //Fin de sección de ventas.    
@@ -311,8 +315,10 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     azucarKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
+                                    volumenCompras+=totalCompraProveedor;
                                     System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
                                     System.out.println("\n==========================================================");
+                                    contadorCompras++;
                                     break;
 
                                 } else {
@@ -342,6 +348,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     avenaKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
+                                    volumenCompras+=totalCompraProveedor;
                                     System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
                                     break;
 
@@ -366,6 +373,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     trigoKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
+                                    volumenCompras+=totalCompraProveedor;
                                     System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
                                     break;
 
@@ -391,6 +399,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 if (efectivoCaja >= totalCompraProveedor) {
                                     maizKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
+                                    volumenCompras+=totalCompraProveedor;
                                     System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
                                     break;
                                 } else {
@@ -416,8 +425,33 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     System.out.println("======================** REPORTES **======================");
                     System.out.println("==========================================================\n");
-                    System.out.println("\nCantidad Actual en Caja: " + efectivoCajaU);
-                    System.out.println("Ganancias: " + gananciaCaja);
+                    System.out.println("\nCantidad en efectivo Actual en Caja: " + efectivoCajaU+" Lps.");
+                    System.out.println("\n--------------------------------------------------------\n");
+                    System.out.println("Cantidad de Ventas Realizadas: "+contadorVentas+" ventas.");
+                    System.out.println("Cantidad de Compras Realizadas: "+contadorCompras+" compras.");
+                     System.out.println("\n--------------------------------------------------------\n");
+                     System.out.println("Volumen de Ventas: "+volumenVentas+" Lps.");
+                     System.out.println("Volumen de Compras: "+volumenCompras+" Lps.");
+                    //Cálculo de Margen de Ganancia
+                    if(volumenVentas>volumenCompras){
+                        margenGanancia = volumenVentas - volumenCompras;
+                        System.out.println("Margen de Ganancia: "+margenGanancia+" Lps.");
+                    }else if(volumenVentas<volumenCompras){
+                        margenGanancia = volumenCompras - volumenVentas;
+                        System.out.println("Margen de Pérdida: "+margenGanancia+" Lps.");
+                    }else{
+                        System.out.println("Sin Ganancias ni Pérdidas.");
+                    }
+                    System.out.println("\n--------------------------------------------------------\n");
+                    // Fin del cálculo
+                    //Cálculo de promedios
+                    promedioVentas = volumenVentas / contadorVentas;
+                    promedioCompras = volumenCompras / contadorCompras;
+                    System.out.println("Total Promedio de Ventas: "+promedioVentas);
+                    
+                            
+                   
+                  
 
                     break;
 
