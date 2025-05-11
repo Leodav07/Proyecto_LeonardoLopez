@@ -312,7 +312,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     //Si esta cerrada la caja...
                     if (cierreCaja == true) {
-                        System.out.println("\n==** CAJA CERRADA; NO PUEDES INGRESAR A VENTAS **==\n");
+                        System.out.println("\n==** CAJA CERRADA; NO PUEDES INGRESAR A COMPRAS **==\n");
                         break;
                     }
 
@@ -589,20 +589,20 @@ public class Lopez_Leonardo_ProyectoTienda {
                     while (continuar) {
                         System.out.print("Efectivo a Depositar en el Banco(Max. 60%): ");
                         depositar = leer.nextDouble();
-
-                        if (depositar <= (gananciaCaja / 60) * 100) {
+                      
+                        if (depositar <= (gananciaCaja*60)/100){
                             gananciaCaja -= depositar;
                             efectivoCaja = gananciaCaja;
-                            System.out.println("\n==================** CERRANDO CAJA **====================");
+                            System.out.println("\n==================** CERRANDO CAJA **====================\n");
                             cierreCaja = true;
                             continuar = false;
-                        } else if (depositar > gananciaCaja) {
-                            System.out.println("\n============** CANTIDAD SUPERA 100% **===========\n");
-
                         } else {
                             System.out.println("\n============** CANTIDAD SUPERA 60% **===========\n");
-
                         }
+                        if(depositar>gananciaCaja){
+                            System.out.println("\n============** CANTIDAD SUPERA 100% **===========\n");
+                        }
+              
                     }
                     break;
 
