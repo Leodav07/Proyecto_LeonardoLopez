@@ -78,7 +78,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                     compraMax = 0; azucarKg = 0; avenaKg = 0; trigoKg = 0; maizKg = 0; contadorCompras = 0;
                     volumenCompras = 0; promedioCompras = 0; margenGanancia = 0; productoEstrella = 0;
                     cierreCaja = false;
-                    
+                    System.out.println("\n==========================================================");
+                    break; 
                     }
                     System.out.println("========================** CAJA **========================");
                     System.out.println("==========================================================\n");
@@ -104,6 +105,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                      totalAvena = 0,
                      totalTrigo = 0,
                      totalMaiz = 0;
+                     compraKgAzucarU = 0; compraKgAvenaU = 0;
+                     compraKgTrigoU = 0; compraKgMaizU = 0;
                     System.out.println("=======================** VENTAS **=======================");
                     System.out.println("==========================================================\n");
                     do {
@@ -165,7 +168,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                         compraCliente = cantidadKg * 25;
                                         System.out.println("\nPrecio por kilogramo: " + 25 + " Lps.");
                                         System.out.println("Precio total: " + compraCliente + " Lps.\n");
-                                        System.out.print("¿Desea añadir producto a la compra?(Si/No: ");
+                                        System.out.print("¿Desea añadir producto a la compra?(Si/No): ");
                                         respuestaSiNo = leer.next().toLowerCase();
 
                                         if (respuestaSiNo.equals("si")) {
