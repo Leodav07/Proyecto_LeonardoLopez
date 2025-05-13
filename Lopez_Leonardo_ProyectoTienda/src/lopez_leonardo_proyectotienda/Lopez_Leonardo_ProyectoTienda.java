@@ -535,9 +535,15 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 System.out.println("\n==========================================================");
                                 break;
                             }
+                        
+                        default:
+                            System.out.println("\n=============** SELECCIONE UNA OPCION VALIDA *============\n");
+                            System.out.println("\n==========================================================");
+                            break;
+
                     }
 
-
+                    break;
                 /*
                     SECCIÓN DE REPORTES
                     Actividad: Aqui el cajero puede observar estadísticas de las ventas, compras realizadas, etc..
@@ -673,8 +679,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                 // INGRESO INVÁLIDO DE OPCIONES
                 default:
 
-                    System.out.println("\nSelecciona una opción válida...\n");
-                    System.out.println("==========================================================\n");
+                    System.out.println("\n=============** SELECCIONE UNA OPCION VALIDA *============\n");
+                    System.out.println("\n==========================================================");
                     break;
 
             }
