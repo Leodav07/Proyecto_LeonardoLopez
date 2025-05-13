@@ -402,14 +402,14 @@ public class Lopez_Leonardo_ProyectoTienda {
                     switch (tipoProducto) {
                         case 1:
                             totalCompraProveedor = cantidadKg * 25;
-                            if (efectivoCaja >= totalCompraProveedor){
-                            System.out.println("Precio por kilogramo: " + 25 + " Lps.");
-                            System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
-                            System.out.print("¿Desea realizar la compra?(Si/No): ");
-                            respuestaSiNo = leer.next().toLowerCase();
+                            if (efectivoCaja >= totalCompraProveedor) {
+                                System.out.println("Precio por kilogramo: " + 25 + " Lps.");
+                                System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
+                                System.out.print("¿Desea realizar la compra?(Si/No): ");
+                                respuestaSiNo = leer.next().toLowerCase();
 
-                            if (respuestaSiNo.equals("si")) {
-                                 
+                                if (respuestaSiNo.equals("si")) {
+
                                     azucarKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
                                     volumenCompras += totalCompraProveedor;
@@ -422,61 +422,67 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     break;
 
                                 } else {
-                                System.out.println("\n============** FINALIZANDO PROCESO DE COMPRA **===========\n");
+                                    System.out.println("\n============** FINALIZANDO PROCESO DE COMPRA **===========\n");
+                                    System.out.println("\n==========================================================");
+                                    break;
+                                }
+                            } else {
+                                System.out.println("\n====** DINERO INSUFICIENTE, NO SE PUEDE PAGAR COMPRA *====\n");
                                 System.out.println("\n==========================================================");
                                 break;
-                            } 
                             }
-                          else {
+
+                        case 2:
+                            if (tipoProveedor.equals("b")) {
+                                totalCompraProveedor = cantidadKg * 20;
+                                if (efectivoCaja >= totalCompraProveedor) {
+                                    System.out.println("Precio por kilogramo: " + 20 + " Lps.");
+                                } else {
                                     System.out.println("\n====** DINERO INSUFICIENTE, NO SE PUEDE PAGAR COMPRA *====\n");
                                     System.out.println("\n==========================================================");
                                     break;
                                 }
-                    
-                        case 2:
-                            if (tipoProveedor.equals("b")) {
-                                totalCompraProveedor = cantidadKg * 20;
-                                System.out.println("Precio por kilogramo: " + 20 + " Lps.");
                             } else if (tipoProveedor.equals("c")) {
                                 totalCompraProveedor = cantidadKg * 22;
-                                System.out.println("Precio por kilogramo: " + 22 + " Lps.\n");
+                                if (efectivoCaja >= totalCompraProveedor) {
+                                    System.out.println("Precio por kilogramo: " + 22 + " Lps.\n");
+                                } else {
+                                    System.out.println("\n====** DINERO INSUFICIENTE, NO SE PUEDE PAGAR COMPRA *====\n");
+                                    System.out.println("\n==========================================================");
+                                    break;
+                                }
                             }
                             System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
                             System.out.print("¿Desea realizar la compra?(Si/No): ");
                             respuestaSiNo = leer.next().toLowerCase();
 
                             if (respuestaSiNo.equals("si")) {
-                                if (efectivoCaja >= totalCompraProveedor) {
-                                    avenaKg += cantidadKg;
-                                    efectivoCaja -= totalCompraProveedor;
-                                    volumenCompras += totalCompraProveedor;
-                                    System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
-                                    System.out.println("\n==========================================================");
-                                    if (totalCompraProveedor > compraMax) {
-                                        compraMax = totalCompraProveedor;
-                                    }
-                                    contadorCompras++;
-                                    break;
 
-                                } else {
-                                    System.out.println("\nDinero insuficiente, no se puede pagar compra...\n");
-                                    System.out.println("\n==========================================================");
-                                    break;
+                                avenaKg += cantidadKg;
+                                efectivoCaja -= totalCompraProveedor;
+                                volumenCompras += totalCompraProveedor;
+                                System.out.println("\n============** COMPRA REALIZADA EXITOSAMENTE **===========\n");
+                                System.out.println("\n==========================================================");
+                                if (totalCompraProveedor > compraMax) {
+                                    compraMax = totalCompraProveedor;
                                 }
+                                contadorCompras++;
+                                break;
+
                             } else {
-                                System.out.println("\nFinalizando proceso de compra...\n");
+                                System.out.println("\n============** FINALIZANDO PROCESO DE COMPRA **===========\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
                         case 3:
                             totalCompraProveedor = cantidadKg * 30;
-                            System.out.println("Precio por kilogramo: " + 30 + " Lps.");
-                            System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
-                            System.out.print("¿Desea realizar la compra?(Si/No): ");
-                            respuestaSiNo = leer.next().toLowerCase();
+                            if (efectivoCaja >= totalCompraProveedor) {
+                                System.out.println("Precio por kilogramo: " + 30 + " Lps.");
+                                System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
+                                System.out.print("¿Desea realizar la compra?(Si/No): ");
+                                respuestaSiNo = leer.next().toLowerCase();
 
-                            if (respuestaSiNo.equals("si")) {
-                                if (efectivoCaja >= totalCompraProveedor) {
+                                if (respuestaSiNo.equals("si")) {
                                     trigoKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
                                     volumenCompras += totalCompraProveedor;
@@ -489,25 +495,25 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     break;
 
                                 } else {
-                                    System.out.println("\nDinero insuficiente, no se puede pagar compra...\n");
+                                    System.out.println("\n============** FINALIZANDO PROCESO DE COMPRA **===========\n");
                                     System.out.println("\n==========================================================");
                                     break;
                                 }
                             } else {
-                                System.out.println("\nFinalizando proceso de compra...\n");
+                                System.out.println("\n====** DINERO INSUFICIENTE, NO SE PUEDE PAGAR COMPRA *====\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
-
                         case 4:
                             totalCompraProveedor = cantidadKg * 18;
-                            System.out.println("Precio por kilogramo: " + 18 + " Lps.");
-                            System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
-                            System.out.print("¿Desea realizar la compra?(Si/No): ");
-                            respuestaSiNo = leer.next().toLowerCase();
+                            if (efectivoCaja >= totalCompraProveedor) {
+                                System.out.println("Precio por kilogramo: " + 18 + " Lps.");
+                                System.out.println("Precio total: " + totalCompraProveedor + " Lps.\n");
+                                System.out.print("¿Desea realizar la compra?(Si/No): ");
+                                respuestaSiNo = leer.next().toLowerCase();
 
-                            if (respuestaSiNo.equals("si")) {
-                                if (efectivoCaja >= totalCompraProveedor) {
+                                if (respuestaSiNo.equals("si")) {
+
                                     maizKg += cantidadKg;
                                     efectivoCaja -= totalCompraProveedor;
                                     volumenCompras += totalCompraProveedor;
@@ -518,19 +524,19 @@ public class Lopez_Leonardo_ProyectoTienda {
                                     }
                                     contadorCompras++;
                                     break;
+
                                 } else {
-                                    System.out.println("\nDinero insuficiente, no se puede pagar compra...\n");
+                                    System.out.println("\n============** FINALIZANDO PROCESO DE COMPRA **===========\n");
                                     System.out.println("\n==========================================================");
                                     break;
                                 }
                             } else {
-                                System.out.println("\nFinalizando proceso de compra...\n");
+                                System.out.println("\n====** DINERO INSUFICIENTE, NO SE PUEDE PAGAR COMPRA *====\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
                     }
 
-                    break;
 
                 /*
                     SECCIÓN DE REPORTES
