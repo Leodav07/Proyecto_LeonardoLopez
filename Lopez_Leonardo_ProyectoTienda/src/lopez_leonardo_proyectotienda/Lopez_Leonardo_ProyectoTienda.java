@@ -29,13 +29,14 @@ public class Lopez_Leonardo_ProyectoTienda {
         String tipoCliente, respContinuar = "", respuestaSiNo;
         int contadorVentas = 0;
         double volumenVentas = 0, promedioVentas = 0;
+        boolean abrirVentas = false;
         // VARIABLES SECCIÓN COMPRAS
         String tipoProveedor;
         double totalCompraProveedor = 0, compraMax = 0;
         double azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0;
         int tipoProducto = 0, contadorCompras = 0;
         double volumenCompras = 0, promedioCompras = 0;
-
+       boolean abrirCompras = false;
         // VARIABLES SECCION REPORTES
         double margenGanancia = 0, productoEstrella = 0;
         // VARIABLES SECCIÓN MENÚ
@@ -66,20 +67,46 @@ public class Lopez_Leonardo_ProyectoTienda {
                 Actividad: Aquí el cajero puede abrir la cajera e ingresar monto en efectivo.
                  */
                 case 1:
-                    if(cierreCaja == true){
-                    System.out.println("====================** CAJA ABIERTA **====================");
-                    System.out.println("==========================================================\n");
-                    
-                    //Reinicio de contadores
-                    compraCliente = 0; cantidadKg = 0; subtotalVenta = 0; totalVenta = 0; descuento = 0; isv = 0; pctDesc = 0; ventaMax = 0;
-                    compraKgAzucar = 0; compraKgAzucarU = 0; compraKgAvena = 0; compraKgAvenaU = 0;
-                    compraKgTrigo = 0; compraKgTrigoU = 0; compraKgMaiz = 0; compraKgMaizU = 0;
-                    contadorVentas = 0; volumenVentas = 0; promedioVentas = 0; totalCompraProveedor = 0;
-                    compraMax = 0; azucarKg = 0; avenaKg = 0; trigoKg = 0; maizKg = 0; contadorCompras = 0;
-                    volumenCompras = 0; promedioCompras = 0; margenGanancia = 0; productoEstrella = 0;
-                    cierreCaja = false;
-                    System.out.println("\n==========================================================");
-                    break; 
+                    if (cierreCaja == true) {
+                        System.out.println("====================** CAJA ABIERTA **====================");
+                        System.out.println("==========================================================\n");
+
+                        //Reinicio de contadores
+                        compraCliente = 0;
+                        cantidadKg = 0;
+                        subtotalVenta = 0;
+                        totalVenta = 0;
+                        descuento = 0;
+                        isv = 0;
+                        pctDesc = 0;
+                        ventaMax = 0;
+                        compraKgAzucar = 0;
+                        compraKgAzucarU = 0;
+                        compraKgAvena = 0;
+                        compraKgAvenaU = 0;
+                        compraKgTrigo = 0;
+                        compraKgTrigoU = 0;
+                        compraKgMaiz = 0;
+                        compraKgMaizU = 0;
+                        contadorVentas = 0;
+                        volumenVentas = 0;
+                        promedioVentas = 0;
+                        totalCompraProveedor = 0;
+                        compraMax = 0;
+                        azucarKg = 0;
+                        avenaKg = 0;
+                        trigoKg = 0;
+                        maizKg = 0;
+                        contadorCompras = 0;
+                        volumenCompras = 0;
+                        promedioCompras = 0;
+                        margenGanancia = 0;
+                        productoEstrella = 0;
+                        abrirVentas = true;
+                        abrirCompras = true;
+                        cierreCaja = false;
+                        System.out.println("\n==========================================================");
+                        break;
                     }
                     System.out.println("========================** CAJA **========================");
                     System.out.println("==========================================================\n");
@@ -89,7 +116,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                     efectivoCaja += monto;
                     System.out.println("\n===========**¡Monto agregado con éxito en caja!**=========");
                     System.out.println("\n==========================================================");
-
+                    abrirVentas = true;
+                    abrirCompras = true;
                     break;
 
                 /* SECCIÓN DE VENTAS
@@ -97,26 +125,31 @@ public class Lopez_Leonardo_ProyectoTienda {
                  */
                 case 2:
                     // Si esta cerrada la caja...
-                    if (cierreCaja == true) {
+                    if (abrirVentas == false) {
                         System.out.println("\n==** CAJA CERRADA; NO PUEDES INGRESAR A VENTAS **==\n");
                         break;
                     }
+                    if(azucarKg>0 || avenaKg > 0 || avenaKg>0 || trigoKg>0){
                     double totalAzucar = 0,
                      totalAvena = 0,
                      totalTrigo = 0,
                      totalMaiz = 0;
-                     compraKgAzucarU = 0; compraKgAvenaU = 0;
-                     compraKgTrigoU = 0; compraKgMaizU = 0;
+                    compraKgAzucarU = 0;
+                    compraKgAvenaU = 0;
+                    compraKgTrigoU = 0;
+                    compraKgMaizU = 0;
+                     int contadorProductos = 0;
                     System.out.println("=======================** VENTAS **=======================");
                     System.out.println("==========================================================\n");
                     do {
                         boolean seguir = true;
                         cantidadKg = 0;
                         compraCliente = 0;
-
+     
                         System.out.print("Ingrese tipo de cliente (A/B/C): ");
                         tipoCliente = leer.next().toLowerCase();
                         System.out.println("Producto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
+                        System.out.println("Stock:      "+azucarKg+"kg. | "+avenaKg+"kg. | "+trigoKg+"kg. | "+maizKg+"kg.");
                         System.out.print("Ingrese el código de producto deseado: ");
                         tipoProducto = leer.nextInt();
 
@@ -153,6 +186,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                             compraKgAzucar += cantidadKg;
                                             compraKgAzucarU += cantidadKg;
                                             totalAzucar += compraCliente;
+                                            contadorProductos++;
                                             System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
                                         } else {
                                             System.out.println("\n=========** PRODUCTO NO AÑADIDO **==========\n");
@@ -176,6 +210,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                             compraKgAvena += cantidadKg;
                                             compraKgAvenaU += cantidadKg;
                                             totalAvena += compraCliente;
+                                            contadorProductos++;
                                             System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
                                         } else {
@@ -200,6 +235,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                             compraKgTrigo += cantidadKg;
                                             compraKgTrigoU += cantidadKg;
                                             totalTrigo += compraCliente;
+                                            contadorProductos++;
                                             System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
                                         } else {
@@ -225,6 +261,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                             compraKgMaiz += cantidadKg;
                                             compraKgMaizU += cantidadKg;
                                             totalMaiz += compraCliente;
+                                            contadorProductos++;
                                             System.out.println("\n====** PRODUCTO AÑADIDO EXITOSAMENTE **=====\n");
 
                                         } else {
@@ -241,7 +278,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                         respContinuar = leer.next().toLowerCase();
                         System.out.println("\n==========================================================\n");
                     } while (respContinuar.equals("si"));
-
+                    
+                    if(contadorProductos>0){
                     //APARTADO DE FACTURA DEL CLIENTE
                     String totalAzucarU = String.format("%.2f", totalAzucar);
                     String totalAvenaU = String.format("%.2f", totalAvena);
@@ -301,6 +339,15 @@ public class Lopez_Leonardo_ProyectoTienda {
                     if (totalVenta > ventaMax) {
                         ventaMax = totalVenta;
                     }
+                    }
+                    else{
+                        System.out.println("\n==** FIN DE VENTA | NO PRODUCTOS AÑADIDOS EN CANASTA **===\n"); 
+                        System.out.println("\n==========================================================");
+                    }
+                    }else{
+                        System.out.println("\n=============** NO HAY PRODUCTOS EN STOCK **==============\n"); 
+                        System.out.println("\n==========================================================");
+                    }
                     break;
 
                 //Fin de sección de ventas.    
@@ -311,7 +358,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                 case 3:
 
                     //Si esta cerrada la caja...
-                    if (cierreCaja == true) {
+                    if (abrirCompras == false) {
                         System.out.println("\n==** CAJA CERRADA; NO PUEDES INGRESAR A COMPRAS **==\n");
                         break;
                     }
@@ -490,7 +537,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     String efectivoCajaU = String.format("%.2f", efectivoCaja);
                     margenGanancia = 0;
-                    
+
                     System.out.println("======================** REPORTES **======================");
                     System.out.println("==========================================================\n");
 
@@ -525,7 +572,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                     //Cálculo de promedios
                     promedioVentas = 0;
                     promedioCompras = 0;
-                    
+
                     promedioVentas = volumenVentas / contadorVentas;
                     promedioCompras = volumenCompras / contadorCompras;
                     String promedioVentasU = String.format("%.2f", promedioVentas);
@@ -589,20 +636,22 @@ public class Lopez_Leonardo_ProyectoTienda {
                     while (continuar) {
                         System.out.print("Efectivo a Depositar en el Banco(Max. 60%): ");
                         depositar = leer.nextDouble();
-                      
-                        if (depositar <= (gananciaCaja*60)/100){
+
+                        if (depositar <= (gananciaCaja * 60) / 100) {
                             gananciaCaja -= depositar;
                             efectivoCaja = gananciaCaja;
                             System.out.println("\n==================** CERRANDO CAJA **====================\n");
                             cierreCaja = true;
+                            abrirVentas = false;
+                            abrirCompras = false;
                             continuar = false;
                         } else {
                             System.out.println("\n============** CANTIDAD SUPERA 60% **===========\n");
                         }
-                        if(depositar>gananciaCaja){
+                        if (depositar > gananciaCaja) {
                             System.out.println("\n============** CANTIDAD SUPERA 100% **===========\n");
                         }
-              
+
                     }
                     break;
 
