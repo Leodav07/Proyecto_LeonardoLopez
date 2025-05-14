@@ -365,13 +365,17 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     System.out.println("=======================** COMPRAS **======================");
                     System.out.println("==========================================================\n");
-                    System.out.print("Ingrese tipo de Proveedor(A/B/C): ");
-                    tipoProveedor = leer.next().toLowerCase();
+                    do {
+                        System.out.print("Ingrese tipo de Proveedor(A/B/C): ");
+                        tipoProveedor = leer.next().toLowerCase();
+                    } while (tipoProveedor.equals("a") || tipoProveedor.equals("b") || tipoProveedor.equals("c"));
                     System.out.println("\nProducto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
                     System.out.printf("Stock:    %-10s | %-10s | %-10s | %-10s%n",
                             azucarKg + "kg.", avenaKg + "kg.", trigoKg + "kg.", maizKg + "kg.");
-                    System.out.print("\nIngrese el código de producto deseado a comprar: ");
-                    tipoProducto = leer.nextInt();
+                    do {
+                        System.out.print("\nIngrese el código de producto deseado a comprar: ");
+                        tipoProducto = leer.nextInt();
+                    } while (tipoProducto <= 0 || tipoProducto > 4);
 
                     // RESTRINGIR PRODUCTOS
                     if (tipoProveedor.equals("a")) {
@@ -395,9 +399,10 @@ public class Lopez_Leonardo_ProyectoTienda {
                         }
                     }
                     // FIN RESTRINGIR PRODUCTOS
-
-                    System.out.print("Ingrese cantidad de kilogramos(kg) a comprar: ");
-                    cantidadKg = leer.nextDouble();
+                    do {
+                        System.out.print("Ingrese cantidad de kilogramos(kg) a comprar: ");
+                        cantidadKg = leer.nextDouble();
+                    } while (cantidadKg <= 0);
                     System.out.println("\n");
                     switch (tipoProducto) {
                         case 1:
@@ -535,7 +540,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                                 System.out.println("\n==========================================================");
                                 break;
                             }
-                        
+
                         default:
                             System.out.println("\n=============** SELECCIONE UNA OPCION VALIDA *============\n");
                             System.out.println("\n==========================================================");
