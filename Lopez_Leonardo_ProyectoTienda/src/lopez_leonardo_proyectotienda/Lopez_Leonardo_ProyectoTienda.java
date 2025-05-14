@@ -368,7 +368,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                     do {
                         System.out.print("Ingrese tipo de Proveedor(A/B/C): ");
                         tipoProveedor = leer.next().toLowerCase();
-                    } while (tipoProveedor.equals("a") || tipoProveedor.equals("b") || tipoProveedor.equals("c"));
+                    } while (!tipoProveedor.equals("a") && !tipoProveedor.equals("b") && !tipoProveedor.equals("c"));
                     System.out.println("\nProducto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
                     System.out.printf("Stock:    %-10s | %-10s | %-10s | %-10s%n",
                             azucarKg + "kg.", avenaKg + "kg.", trigoKg + "kg.", maizKg + "kg.");
@@ -390,14 +390,16 @@ public class Lopez_Leonardo_ProyectoTienda {
                             System.out.println("\n===========* NO PUEDE PROVEER DICHO PRODUCTO *============\n");
                             System.out.println("\n==========================================================");
                             break;
-                        } else if (tipoProveedor.equals("c")) {
+                        } 
+                    }
+                        if (tipoProveedor.equals("c")) {
                             if (tipoProducto == 1 || tipoProducto == 3 || tipoProducto == 4) {
                                 System.out.println("\n===========* NO PUEDE PROVEER DICHO PRODUCTO *============\n");
                                 System.out.println("\n==========================================================");
                                 break;
                             }
                         }
-                    }
+                    
                     // FIN RESTRINGIR PRODUCTOS
                     do {
                         System.out.print("Ingrese cantidad de kilogramos(kg) a comprar: ");
