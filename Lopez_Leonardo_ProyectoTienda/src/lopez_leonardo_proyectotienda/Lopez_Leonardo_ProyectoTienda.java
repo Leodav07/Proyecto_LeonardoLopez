@@ -45,6 +45,7 @@ public class Lopez_Leonardo_ProyectoTienda {
 
         //VARIABLES SECCION CIERRE DE CAJA
         boolean cierreCaja = false;
+        boolean cierreCajaCondicion = true;
 
         //MENÚ PRINCIPAL DE LA TIENDA
         System.out.println("==========================================================");
@@ -107,11 +108,13 @@ public class Lopez_Leonardo_ProyectoTienda {
                         abrirCompras = true;
                         cierreCaja = false;
                         prodEstrella = false;
+                        cierreCajaCondicion = false;
                         System.out.println("\n==========================================================");
                         break;
                     }
                     System.out.println("========================** CAJA **========================");
                     System.out.println("==========================================================\n");
+                    cierreCajaCondicion = false;
                     double monto;
                     do {
                         System.out.print("Ingrese monto en efectivo: ");
@@ -707,13 +710,13 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     System.out.println("==================** CIERRE DE CAJA **====================");
                     System.out.println("==========================================================\n");
-                    
-                    if (cierreCaja == false) { //Si la caja ya estuvo cerrada anteriormente
+
+                    if (cierreCajaCondicion) { //Si la caja ya estuvo cerrada anteriormente
                         System.out.println("\n==============** LA CAJA YA ESTA CERRADA **===============\n");
                         System.out.println("\n==========================================================");
                         break;
                     }
-                    
+
                     if (gananciaCaja == 0) {          //Si las ganancias en Caja están en 0 no hubo ganancias
                         System.out.println("No hubo ganancias en Caja");
                         System.out.println("\n==================** CERRANDO CAJA **====================\n");
@@ -721,9 +724,10 @@ public class Lopez_Leonardo_ProyectoTienda {
                         abrirVentas = false;
                         abrirCompras = false;
                         continuar = false;
+                        cierreCajaCondicion = true;
                         System.out.println("\n==========================================================");
                         break;
-                        
+
                     }
 
                     String gananciaCajaU = String.format("%.2f", gananciaCaja);
@@ -743,6 +747,7 @@ public class Lopez_Leonardo_ProyectoTienda {
                             abrirVentas = false;
                             abrirCompras = false;
                             continuar = false;
+                            cierreCajaCondicion = true;
                         } else {
                             System.out.println("\n============** CANTIDAD SUPERA 60% **===========\n");
                         }
