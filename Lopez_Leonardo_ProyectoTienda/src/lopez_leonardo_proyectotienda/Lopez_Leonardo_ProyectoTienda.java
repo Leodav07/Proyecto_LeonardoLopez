@@ -158,19 +158,20 @@ public class Lopez_Leonardo_ProyectoTienda {
                         int contadorProductos = 0;
                         System.out.println("=======================** VENTAS **=======================");
                         System.out.println("==========================================================\n");
+
+                        cantidadKg = 0;
+                        compraCliente = 0;
+                        do {
+                            System.out.print("Ingrese tipo de cliente (A/B/C): ");
+                            tipoCliente = leer.next().toLowerCase();
+
+                        } while (!tipoCliente.equals("a") && !tipoCliente.equals("b") && !tipoCliente.equals("c"));
                         do {
                             boolean seguir = true;
-                            cantidadKg = 0;
-                            compraCliente = 0;
-                            do {
-                                System.out.print("Ingrese tipo de cliente (A/B/C): ");
-                                tipoCliente = leer.next().toLowerCase();
-
-                            } while (!tipoCliente.equals("a") && !tipoCliente.equals("b") && !tipoCliente.equals("c"));
-
                             System.out.println("\nProducto: 1. Azúcar  |  2. Avena  |  3. Trigo  |  4. Maíz  ");
                             System.out.printf("Stock:    %-10s | %-10s | %-10s | %-10s%n",
                                     azucarKg + "kg.", avenaKg + "kg.", trigoKg + "kg.", maizKg + "kg.");
+
                             do {
                                 System.out.print("\nIngrese el código de producto deseado: ");
                                 tipoProducto = leer.nextInt();
@@ -717,8 +718,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                         break;
                     }
 
-                    if (gananciaCaja == 0) {          //Si las ganancias en Caja están en 0 no hubo ganancias
-                        System.out.println("No hubo ganancias en Caja");
+                    if (efectivoCaja == 0) {          //Si la caja esta en 0 no necesita guardar nada
+                        System.out.println("No Hay Efectivo en Caja");
                         System.out.println("\n==================** CERRANDO CAJA **====================\n");
                         cierreCaja = true;
                         abrirVentas = false;
@@ -730,16 +731,14 @@ public class Lopez_Leonardo_ProyectoTienda {
 
                     }
 
-                    String gananciaCajaU = String.format("%.2f", gananciaCaja);
                     efectivoCajaU = String.format("%.2f", efectivoCaja);
-                    System.out.println("Ganancia obtenida en Caja: " + gananciaCajaU + " Lps.");
                     System.out.println("Efectivo actual en Caja: " + efectivoCajaU + " Lps.");
 
                     while (continuar) {
                         System.out.print("Efectivo a Depositar en el Banco(Max. 60%): ");
                         depositar = leer.nextDouble();
 
-                        if (depositar <= (efectivoCaja * 60) / 100) {
+                        if (depositar <= (efectivoCaja * 60) / 100 && depositar > 0) {
                             efectivoCaja -= depositar;
 
                             System.out.println("\n==================** CERRANDO CAJA **====================\n");
@@ -748,7 +747,8 @@ public class Lopez_Leonardo_ProyectoTienda {
                             abrirCompras = false;
                             continuar = false;
                             cierreCajaCondicion = true;
-                        } else {
+                            gananciaCaja = 0;
+                        } else if (depositar > (efectivoCaja * 60) / 100) {
                             System.out.println("\n============** CANTIDAD SUPERA 60% **===========\n");
                         }
                         if (depositar <= 0) {   //Si el usuario ingresa 0 o negativos no ingresa ningun valor
